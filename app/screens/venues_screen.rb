@@ -1,5 +1,6 @@
 class VenuesScreen < PM::TableScreen
   title "Lugares"
+  # searchable hide_initially: true
   refreshable
   stylesheet VenuesScreenStylesheet
 
@@ -29,38 +30,21 @@ class VenuesScreen < PM::TableScreen
             title: venue["name"].to_s,
             subtitle: venue["counter"].to_s + " Personas" ,
             action: :tap_headline,
-            arguments: { id: venue["id"], name: venue["name"] }
+            arguments: { id: venue["id"], name: venue["name"], counter: venue["counter"].to_s }
           }
         end
       else 
-        app.alert("Something Went Wrong"+response)
+        app.alert(title: "Something Went Wrong", message: response)
       end
       stop_refreshing
       update_table_data      
     end
   end
 
-  def tap_headline
+  def tap_headline(args={})
+    open DetailsScreen.new(venue_name: args[:name], venue_id: args[:id])
+    # open DetailsScreen.new(nav_bar: true, venue_name: args[:name], venue_id: args[:id])
   end
-
-  # def get_venues
-  #   App.shared.setNetworkActivityIndicatorVisible true
-  #   CounterAPI.new.venues do |response|
-  #     App.shared.setNetworkActivityIndicatorVisible false
-  #     if response.success?
-
-  #     else
-  #       if response.operation.response == nil
-  #         status = ""
-  #       else
-  #         status = ": " + response.status_code.to_s
-  #       end
-  #       app.alert("Something Went Wrong"+status + response.error.localizedDescription)
-  #       []
-  #     end
-  #   end
-  # end
-  
 
   # You don't have to reapply styles to all UIViews, if you want to optimize, another way to do it
   # is tag the views you need to restyle in your stylesheet, then only reapply the tagged views, like so:
