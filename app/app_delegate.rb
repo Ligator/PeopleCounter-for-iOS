@@ -1,11 +1,9 @@
 class AppDelegate < PM::Delegate
-  include CDQ # Remove this if you aren't using CDQ
 
   status_bar true, animation: :fade
 
   def on_load(app, options)
-    cdq.setup # Remove this if you aren't using CDQ
-    open HomeScreen.new(nav_bar: true)
+    open VenuesScreen.new(nav_bar: true)
   end
 
   # Remove this if you are only supporting portrait
