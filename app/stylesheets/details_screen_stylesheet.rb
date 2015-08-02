@@ -36,6 +36,11 @@ class DetailsScreenStylesheet < ApplicationStylesheet
     # st.size_to_fit
   end
 
+  def chart_view(st)
+    st.frame = {t: 280, w: 300, h: 100, centered: :horizontal}
+    st.background_color = color.red
+  end
+
 	# def sample_image(st)
 	#   st.frame = {left: 20, below_prev: 10, from_right: 20, from_bottom: 20}
 	#   st.background_color = color.gray
@@ -43,5 +48,5 @@ class DetailsScreenStylesheet < ApplicationStylesheet
 	#   # an example of using the view directly
 	#   st.view.contentMode = UIViewContentModeScaleAspectFit
 	# end
-  
+
 end

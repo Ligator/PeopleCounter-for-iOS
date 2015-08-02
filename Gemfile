@@ -8,7 +8,8 @@ gem "afmotion" # Networking
 
 # Debugging tools
 gem "newclear" # Completely wipe out the simulator and rebuild
-
+gem "bubble-wrap", "~> 1.8.0"
+gem 'motion-plot'
 # Optional
 
 # gem "ProMotion-form"
