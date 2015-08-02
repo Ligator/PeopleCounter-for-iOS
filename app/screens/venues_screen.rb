@@ -1,11 +1,14 @@
 class VenuesScreen < PM::TableScreen
   title "Lugares"
-  # searchable hide_initially: true
   refreshable
   stylesheet VenuesScreenStylesheet
 
   def on_load
     @table_data ||= []
+    # get_venues
+  end
+
+  def will_appear
     get_venues
   end
   
@@ -37,14 +40,33 @@ class VenuesScreen < PM::TableScreen
         app.alert(title: "Something Went Wrong", message: response)
       end
       stop_refreshing
-      update_table_data      
+      update_table_data     
+      @timer_venues = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: 'timerFired', userInfo: nil, repeats: false)
     end
   end
 
   def tap_headline(args={})
+    timerStop
     open DetailsScreen.new(venue_name: args[:name], venue_id: args[:id])
     # open DetailsScreen.new(nav_bar: true, venue_name: args[:name], venue_id: args[:id])
   end
+
+  def timerFired
+    get_venues
+  end
+
+  def timerStop
+    if @timer_venues
+      @timer_venues.invalidate
+      @timer_venues.release
+      @timer_venues = nil    
+    end
+  end
+
+  def will_disappear
+    timerStop
+  end
+
 
   # You don't have to reapply styles to all UIViews, if you want to optimize, another way to do it
   # is tag the views you need to restyle in your stylesheet, then only reapply the tagged views, like so:
