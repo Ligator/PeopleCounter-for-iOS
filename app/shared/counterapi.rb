@@ -1,6 +1,6 @@
 class CounterAPI
 	def venues(&callback)
-		url = "http://flextronicschallenge.herokuapp.com"
+		url = ADDRESS
 		client = AFMotion::Client.build(url) do    
 			response_serializer :json
 		end 
@@ -15,7 +15,7 @@ class CounterAPI
 	end
 
 	def details(venue_id, &callback)
-		url = "http://flextronicschallenge.herokuapp.com"
+		url = ADDRESS
 		client = AFMotion::Client.build(url) do    
 			response_serializer :json
 		end 
