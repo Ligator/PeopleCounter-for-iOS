@@ -19,6 +19,7 @@ class VenuesScreen < PM::TableScreen
   end
 
   def on_refresh
+    timerStop
     get_venues
   end
 
@@ -36,19 +37,18 @@ class VenuesScreen < PM::TableScreen
             arguments: { id: venue["id"], name: venue["name"], counter: venue["counter"].to_s }
           }
         end
+        @timer_venues = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: 'timerFired', userInfo: nil, repeats: false)
       else 
-        app.alert(title: "Something Went Wrong", message: response)
+        app.alert(title: "¡Algo no está bien!", message: response + "\n\nIntenta nuevamente deslizando la lista hacia abajo")
       end
       stop_refreshing
       update_table_data     
-      @timer_venues = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: 'timerFired', userInfo: nil, repeats: false)
     end
   end
 
   def tap_headline(args={})
     timerStop
-    open DetailsScreen.new(venue_name: args[:name], venue_id: args[:id])
-    # open DetailsScreen.new(nav_bar: true, venue_name: args[:name], venue_id: args[:id])
+    open DetailsScreen.new(nav_bar: true, venue_name: args[:name], venue_id: args[:id]), in_detail: true
   end
 
   def timerFired

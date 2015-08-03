@@ -3,7 +3,12 @@ class AppDelegate < PM::Delegate
   status_bar true, animation: :fade
 
   def on_load(app, options)
-    open VenuesScreen.new(nav_bar: true)
+    if device.ipad?
+      open_split_screen VenuesScreen.new(nav_bar: true), DetailsScreen.new(nav_bar: true)
+    else
+      open VenuesScreen.new(nav_bar: true)
+    end
+    # open VenuesScreen.new(nav_bar: true)
   end
 
   # Remove this if you are only supporting portrait
