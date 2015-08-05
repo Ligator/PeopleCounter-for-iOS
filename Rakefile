@@ -49,9 +49,49 @@ Motion::Project::App.setup do |app|
   app.info_plist["UIViewControllerBasedStatusBarAppearance"] = false
   app.status_bar_style = :light_content
 
+  app.info_plist['UILaunchImages'] = [
+    # iphone
+    {
+      'UILaunchImageName' => 'Default',
+      'UILaunchImageOrientation' => 'Portrait',
+      'UILaunchImageMinimumOSVersion' => '7.0',
+      'UILaunchImageSize' => '{320, 480}'
+    },
+    {
+      'UILaunchImageName' => 'Default-568h',
+      'UILaunchImageOrientation' => 'Portrait',
+      'UILaunchImageMinimumOSVersion' => '7.0',
+      'UILaunchImageSize' => '{320, 568}'
+    },
+    {
+      'UILaunchImageName' => 'Default-667h',
+      'UILaunchImageOrientation' => 'Portrait',
+      'UILaunchImageMinimumOSVersion' => '8.0',
+      'UILaunchImageSize' => '{375, 667}'
+    },
+    {
+      'UILaunchImageName' => 'Default-736h',
+      'UILaunchImageOrientation' => 'Portrait',
+      'UILaunchImageMinimumOSVersion' => '8.0',
+      'UILaunchImageSize' => '{414, 736}'
+    },
+    # ipad
+    {
+      'UILaunchImageName' => 'Default-Portrait',
+      'UILaunchImageOrientation' => 'Portrait',
+      'UILaunchImageMinimumOSVersion' => '7.0',
+      'UILaunchImageSize' => '{768, 1024}'
+    },
+    {
+      'UILaunchImageName' => 'Default-Landscape',
+      'UILaunchImageOrientation' => 'Landscape',
+      'UILaunchImageMinimumOSVersion' => '7.0',
+      'UILaunchImageSize' => '{768, 1024}'
+    }
+  ]
   app.pods do
     pod 'JMImageCache'
-    pod "SDWebImage"
+    # pod "SDWebImage"
   #   pod 'JGProgressHUD'
   #   pod 'SVProgressHUD'
   #   pod "FontasticIcons"
