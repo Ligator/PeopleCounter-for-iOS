@@ -10,7 +10,7 @@ class StandardAppearance
 
       UILabel.appearance.tap do |o|
         o.setTextColor rmq.color.black
-        o.font = rmq.font.medium
+        o.font = rmq.font.small
       end
 
       # UITabBar.appearance.tap do |o|
@@ -22,7 +22,7 @@ class StandardAppearance
       # end
 
       UINavigationBar.appearance.tap do |o|
-        o.barTintColor = rmq.color.from_hex('#043264')
+        o.barTintColor = rmq.color.from_hex('#008BC8')
          # o.setTintColor rmq.color.red
 
         # o.barTintColor = rmq.color.black
