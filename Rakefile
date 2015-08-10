@@ -13,7 +13,7 @@ require 'motion-plot'
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings
 
-  app.name = 'iOSflextronics'
+  app.name = "PeopleCounter"
   app.identifier = 'com.your_domain_here.iosflextronics'
 
   app.short_version = '0.1.0'
@@ -35,6 +35,7 @@ Motion::Project::App.setup do |app|
 
   app.device_family = [:iphone, :ipad]
   app.interface_orientations = [:portrait, :landscape_left, :landscape_right, :portrait_upside_down]
+  app.archs['iPhoneOS'] |= ['arm64']
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
@@ -107,7 +108,6 @@ Motion::Project::App.setup do |app|
     app.codesign_certificate = 'iPhone Distribution: YOURNAME'
     app.provisioning_profile = "signing/iosflextronics.mobileprovision"
     app.entitlements['beta-reports-active'] = true # For TestFlight
-
     app.seed_id = "YOUR_SEED_ID"
     app.entitlements['application-identifier'] = app.seed_id + '.' + app.identifier
     app.entitlements['keychain-access-groups'] = [ app.seed_id + '.' + app.identifier ]
